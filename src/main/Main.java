@@ -7,7 +7,7 @@ package main;
 
 /**
  *
- * @author ricca
+ * @author ricca0
  */
 public class Main {
 
@@ -15,12 +15,22 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Graph g = createGraph();
+        DirectedGraph g = createGraph();
         System.out.println(g.printGraph());
+        System.out.println("Breadth First : ");
+        for(String s : g.breadthFirstTraversal("Alice")){
+            System.out.print(s + " - ");
+        }
+        System.out.println();
+        System.out.println("Depth First : ");
+        for(String s : g.depthFirstTraversal("Alice")){
+            System.out.print(s + " - ");
+        }
+        System.out.println();
     }
     
-    static Graph createGraph() {
-        Graph graph = new Graph();
+    static DirectedGraph createGraph() {
+        DirectedGraph graph = new DirectedGraph();
         graph.addVertex("Bob");
         graph.addVertex("Alice");
         graph.addVertex("Mark");
