@@ -14,6 +14,7 @@ public interface Parameters {
     public static final int BOARD_HEIGHT = 100;
     public static final int BOARD_WIDTH = 100;
     public static final int RADIUS = 5;
+    public static final int STEP = 2;
     
     // TAKEN BY MARKET SHARE
     public static final double ANDROID_PERCENTAGE = 0.85;

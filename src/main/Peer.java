@@ -34,23 +34,21 @@ public class Peer {
         return s;
     }
     
-    class Position {
-        int X;
-        int Y;
-        
-        Position(int x, int y){
-            X = x;
-            Y = y;
-        }
+    boolean hasInRadius(Peer p){
+        boolean result = false;
+        if((p.POSITION.X - this.POSITION.X) * (p.POSITION.X - this.POSITION.X) + 
+            (p.POSITION.Y - this.POSITION.Y) * (p.POSITION.Y - this.POSITION.Y)
+                <= Parameters.RADIUS * Parameters.RADIUS) result = true;
+        return result;
     }
-    
-    void move(){
-        /*TODO
-        1. Choose new state according to probabilities
-        2. Choose new direction
-        3. Move to this direction
-        */
-        
-        
+}
+
+class Position {
+    int X;
+    int Y;
+
+    Position(int x, int y){
+        X = x;
+        Y = y;
     }
 }
