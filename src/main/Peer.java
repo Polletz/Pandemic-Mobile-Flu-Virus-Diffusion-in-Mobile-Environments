@@ -44,6 +44,14 @@ public class Peer {
                 <= radius * radius) result = true;
         return result;
     }
+    
+    public Peer getCopy(){
+        Peer peer = new Peer(this.POSITION, this.OPERATING_SYSTEM);
+        peer.DIRECTION=this.DIRECTION;
+        peer.INFECTION_STATE=this.INFECTION_STATE;
+        peer.MOVING_STATE=this.MOVING_STATE;
+        return peer;
+    }
 }
 
 class Position {

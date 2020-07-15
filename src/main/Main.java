@@ -33,7 +33,7 @@ public class Main {
         Peer p = b.generatePeer(Parameters.Infection_State.INFECTIOUS);
         b.addPeer(p);
         
-        for(int i=0;i<20;i++){ 
+        for(int i=0;i<10;i++){ 
             b.nextState();
             b.movePeers();
             b.nextInfectionState();

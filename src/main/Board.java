@@ -5,11 +5,17 @@
  */
 package main;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -45,23 +51,47 @@ public class Board {
     }
     
     public void nextInfectionState(){
+        
+        ArrayList<Peer> tmp = new ArrayList<>();
+        ExecutorService pool = Executors.newFixedThreadPool(8);
+        
+        adjPeers.keySet().forEach((x) -> tmp.add(x.getCopy()));
+        
         adjPeers.entrySet().stream()
                 .filter((x) -> x.getKey().INFECTION_STATE != Parameters.Infection_State.RECOVERED)
-                .forEach((entry) -> {        
-            changeInfectionState(entry.getKey());
+                .forEach((entry) -> {
+                    pool.execute(new Task(entry.getKey(), tmp));
+                    //changeInfectionState(entry.getKey(), tmp);
         });
+        
+        pool.shutdown();
+        try {
+            pool.awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+            System.exit(-1);
+        }
     }
     
-    private void changeInfectionState(Peer p){
+    public static void changeInfectionState(Peer p, ArrayList<Peer> tmp){
         Random r = new Random();
         double prob = r.nextDouble();
         if(prob < Parameters.PATCH_RATE){
             p.INFECTION_STATE = Parameters.Infection_State.RECOVERED;
             return;
         }
-        if(p.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS) return;
+        if(p.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
+            return;
+        
+//        long infectious_peers = 
+//                adjPeers.keySet().stream()
+//                .filter((x) -> x.OPERATING_SYSTEM == p.OPERATING_SYSTEM)
+//                .filter((x) -> p.hasInRadius(x, Parameters.INFECTION_RADIUS))
+//                .filter((x) -> x.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
+//                .count();
+//        
         long infectious_peers = 
-                adjPeers.keySet().stream()
+                tmp.stream()
                 .filter((x) -> x.OPERATING_SYSTEM == p.OPERATING_SYSTEM)
                 .filter((x) -> p.hasInRadius(x, Parameters.INFECTION_RADIUS))
                 .filter((x) -> x.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
@@ -274,4 +304,21 @@ public class Board {
         
         return new Position(x, y);
     }
+}
+
+class Task implements Runnable{
+
+    Peer peer;
+    ArrayList<Peer> tmp;
+    
+    Task(Peer p, ArrayList<Peer> peers){
+        peer = p;
+        tmp = peers;
+    }
+    
+    @Override
+    public void run() {
+        Board.changeInfectionState(peer, tmp);
+    }
+    
 }

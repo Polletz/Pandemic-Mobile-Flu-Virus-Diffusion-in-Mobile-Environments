@@ -11,8 +11,8 @@ package main;
  */
 public interface Parameters {
     // RANDOM MEASURES SELECTED BY ME
-    public static final int BOARD_HEIGHT = 100;
-    public static final int BOARD_WIDTH = 100;
+    public static final int BOARD_HEIGHT = 200;
+    public static final int BOARD_WIDTH = 200;
     public static final int INFECTION_RADIUS = 10;
     public static final int STEP = 5;
     
@@ -26,7 +26,7 @@ public interface Parameters {
     public static final double OTHERS_PERCENTAGE = (1.0 - (ANDROID_PERCENTAGE + IOS_PERCENTAGE));
     
     // RANDOM MEASURE SELECTED BY ME
-    public static final int NUMBER_OF_PEERS = 1000;
+    public static final int NUMBER_OF_PEERS = 10000;
     
     // POOSSIBLE STATES
     public static enum Infection_State{SUSCEPTIBLE, INFECTIOUS, RECOVERED}
