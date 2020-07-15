@@ -43,12 +43,16 @@ public class Main {
                 .filter((x) -> x.getKey().OPERATING_SYSTEM == Parameters.OS.ANDROID)
                 .count());   
         
+        System.out.println("Susceptible : " + b.adjPeers.entrySet().stream()
+                .filter((x) -> x.getKey().INFECTION_STATE == Parameters.Infection_State.SUSCEPTIBLE && x.getKey().OPERATING_SYSTEM == Parameters.OS.ANDROID)
+                .count()); 
+        
         System.out.println("Infectious : " + b.adjPeers.entrySet().stream()
                 .filter((x) -> x.getKey().INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
                 .count());   
         
         System.out.println("Recovered : " + b.adjPeers.entrySet().stream()
                 .filter((x) -> x.getKey().INFECTION_STATE == Parameters.Infection_State.RECOVERED && x.getKey().OPERATING_SYSTEM == Parameters.OS.ANDROID)
-                .count());     
+                .count());
     }
 }

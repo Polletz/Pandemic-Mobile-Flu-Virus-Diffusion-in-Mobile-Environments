@@ -11,10 +11,10 @@ package main;
  */
 public interface Parameters {
     // RANDOM MEASURES SELECTED BY ME
-    public static final int BOARD_HEIGHT = 200;
-    public static final int BOARD_WIDTH = 200;
-    public static final int INFECTION_RADIUS = 10;
-    public static final int STEP = 5;
+    public static final int BOARD_HEIGHT = 250;
+    public static final int BOARD_WIDTH = 250;
+    public static final int INFECTION_RADIUS = 8;
+    public static final int STEP = 2;
     
     public static final double INFECTION_RATE = 0.99;
     public static final double PATCH_RATE = 0.01;
@@ -26,7 +26,7 @@ public interface Parameters {
     public static final double OTHERS_PERCENTAGE = (1.0 - (ANDROID_PERCENTAGE + IOS_PERCENTAGE));
     
     // RANDOM MEASURE SELECTED BY ME
-    public static final int NUMBER_OF_PEERS = 10000;
+    public static final int NUMBER_OF_PEERS = 32000;
     
     // POOSSIBLE STATES
     public static enum Infection_State{SUSCEPTIBLE, INFECTIOUS, RECOVERED}
@@ -34,7 +34,7 @@ public interface Parameters {
     public static enum OS{ANDROID, IOS, OTHERS, HOTSPOT}
     
     // RANDOM MEASURES SELECTED BY ME
-    public static final int NUMBER_OF_HOTSPOTS = 2;
+    public static final int NUMBER_OF_HOTSPOTS = 3;
     public static final double HOTSPOT_DISTANCE_PERCENTAGE = 0.8;
     public static final double HOTSPOT_PROPORTION = 0.3;
     public static final int HOTSPOT_RADIUS = 7;
