@@ -44,13 +44,45 @@ public class Board {
             eP1.remove(p2);
     }
     
+    public void nextInfectionState(){
+        adjPeers.entrySet().stream()
+                .filter((x) -> x.getKey().INFECTION_STATE != Parameters.Infection_State.RECOVERED)
+                .forEach((entry) -> {        
+            changeInfectionState(entry.getKey());
+        });
+    }
+    
+    private void changeInfectionState(Peer p){
+        Random r = new Random();
+        double prob = r.nextDouble();
+        if(prob < Parameters.PATCH_RATE){
+            p.INFECTION_STATE = Parameters.Infection_State.RECOVERED;
+            return;
+        }
+        if(p.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS) return;
+        long infectious_peers = 
+                adjPeers.keySet().stream()
+                .filter((x) -> x.OPERATING_SYSTEM == p.OPERATING_SYSTEM)
+                .filter((x) -> p.hasInRadius(x, Parameters.INFECTION_RADIUS))
+                .filter((x) -> x.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
+                .count();
+        
+        for(int i=0;i<infectious_peers;i++){
+            if(r.nextDouble() < Parameters.INFECTION_RATE){
+                p.INFECTION_STATE = Parameters.Infection_State.INFECTIOUS;
+                return;
+            }
+        }
+    }
+    
     public void generateHotspots(){
         for(int i=0;i<Parameters.NUMBER_OF_HOTSPOTS;i++){
             Peer p;
             Random r = new Random();
             int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
             int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
-            p = new Peer(x, y);
+            Parameters.OS os = Parameters.OS.HOTSPOT;
+            p = new Peer(x, y, os);
             hotspots.add(p);
             System.out.println("New Hotspot Generated -> X : " + p.POSITION.X + ", Y : " + p.POSITION.Y);
         }
@@ -59,6 +91,16 @@ public class Board {
     public Peer generatePeer(){
         Random r = new Random();
         Peer p;
+        
+        Parameters.OS os;
+        double prob_os = r.nextDouble();
+        if(prob_os < Parameters.ANDROID_PERCENTAGE)
+            os = Parameters.OS.ANDROID;
+        else if(prob_os < Parameters.ANDROID_PERCENTAGE + Parameters.IOS_PERCENTAGE)
+            os = Parameters.OS.IOS;
+        else
+            os = Parameters.OS.OTHERS;
+
         // PROPORTION OF PEERS IN HOTSPOTS
         double rate = (adjPeers.isEmpty()) ? 1 : ((double) PEERS_IN_HOTSPOTS/adjPeers.size());
         // IF THE PROPORTION IS STILL ACCEPTABLE
@@ -68,35 +110,75 @@ public class Board {
             int hotspot = r.nextInt(Parameters.NUMBER_OF_HOTSPOTS);
             Position pos = ZipfLawGenerator(hotspot);
             
-            p = new Peer(pos.X, pos.Y);
+            p = new Peer(pos.X, pos.Y, os);
             PEERS_IN_HOTSPOTS++;
         }else{
             int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
             int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
-            p = new Peer(x, y);
+            p = new Peer(x, y, os);
         }
+        
+        p.DIRECTION = p.POSITION;
+        
+        return p;
+    }
+    
+    public Peer generatePeer(Parameters.Infection_State INFECTION_STATE){
+        Random r = new Random();
+        Peer p;
+
+        // PROPORTION OF PEERS IN HOTSPOTS
+        double rate = (adjPeers.isEmpty()) ? 1 : ((double) PEERS_IN_HOTSPOTS/adjPeers.size());
+        // IF THE PROPORTION IS STILL ACCEPTABLE
+        if(rate <= Parameters.HOTSPOT_PROPORTION)
+        {
+            // SELECTED HOTSPOT
+            int hotspot = r.nextInt(Parameters.NUMBER_OF_HOTSPOTS);
+            Position pos = ZipfLawGenerator(hotspot);
+            
+            p = new Peer(pos.X, pos.Y, Parameters.OS.ANDROID);
+            PEERS_IN_HOTSPOTS++;
+        }else{
+            int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
+            int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
+            p = new Peer(x, y, Parameters.OS.ANDROID);
+        }
+        
+        p.DIRECTION = p.POSITION;
+        p.INFECTION_STATE = INFECTION_STATE;
         return p;
     }
     
     // COMPUTE NEXT POSITION OF THE PEERS
     public void movePeers(){
         adjPeers.entrySet().forEach((entry) -> {
-            movePeer(entry.getKey());
+            if(entry.getKey().MOVING_STATE!=Parameters.Moving_State.HALTING) movePeer(entry.getKey());
         });
     }
     
     private void movePeer(Peer p){
-        int x = (p.POSITION.X <= p.DIRECTION.X) ? p.POSITION.X + Parameters.STEP : p.POSITION.X - Parameters.STEP;
-        int y = (x - p.POSITION.X / p.DIRECTION.X - p.POSITION.X)*(p.DIRECTION.Y - p.POSITION.Y) + p.POSITION.Y;
+        double x=p.POSITION.X, y=p.POSITION.Y;
         
+        if(x == p.DIRECTION.X){
+            y += Parameters.STEP;
+        }else if(y == p.DIRECTION.Y){
+            x += Parameters.STEP;
+        }else{
+            x = (p.POSITION.X <= p.DIRECTION.X) ? p.POSITION.X + Parameters.STEP : p.POSITION.X - Parameters.STEP;
+            y = ((x - p.POSITION.X) / (double) (p.DIRECTION.X - p.POSITION.X))*(p.DIRECTION.Y - p.POSITION.Y) + p.POSITION.Y;
+        }
+
         if(x <= 0) x = -1*x + 2;
         if(y <= 0) y = -1*y + 2;
-        
+
         if(x > Parameters.BOARD_WIDTH) x = 2*Parameters.BOARD_WIDTH - x;
         if(y > Parameters.BOARD_HEIGHT) y = 2*Parameters.BOARD_HEIGHT - y;
+
+        x = (int) x;
+        y = (int) y;
         
-        p.POSITION.X = x;
-        p.POSITION.Y = y;
+        p.POSITION.X = (int) x;
+        p.POSITION.Y = (int) y;
     }
     
     // COMPUTE NEXT STAGE FOR ALL PEERS
@@ -147,7 +229,7 @@ public class Board {
         Random r = new Random();
         p.MOVING_STATE = Parameters.Moving_State.EXPLORING;
         for(Peer hotspot : hotspots){
-            if(hotspot.hasInRadius(p)){
+            if(hotspot.hasInRadius(p, Parameters.HOTSPOT_RADIUS)){
                 // NEW POSITION IN HOTSPOT WITH ZIPF LAW
                 Position pos = ZipfLawGenerator(hotspots.indexOf(hotspot));
                 p.DIRECTION = pos;
@@ -169,24 +251,26 @@ public class Board {
         
         Random r = new Random();
         
+        int angle = 0;
+        int distance = 1;
         // WHILE THE COORDINATES ARE ACCEPTABLE
         while(x <= 0 || x > Parameters.BOARD_WIDTH || y <= 0 || y > Parameters.BOARD_HEIGHT)
         {
             // DIRECTION ANGLE
-            int angle = r.nextInt(360) + 1;
+            angle = r.nextInt(360) + 1;
             // DISTANCE COMPUTED WITH ZIPF'S LAW
-            int distance = 1;
+            distance = 1;
             double par = r.nextDouble();
-            while(par < (Parameters.HOTSPOT_DISTANCE_PERCENTAGE/distance))
+            while(r.nextDouble() > (Parameters.HOTSPOT_DISTANCE_PERCENTAGE/distance))
                 distance++;
 
             x = (int) (distance * Math.cos(angle));
             y = (int) (distance * Math.sin(angle));
+            
+            // CONVERSION FROM POLAR COORDINATES TO CARTESIAN COORDINATES
+            x += hotspots.get(hotspot).POSITION.X;
+            y += hotspots.get(hotspot).POSITION.Y;
         }
-        
-        // CONVERSION FROM POLAR COORDINATES TO CARTESIAN COORDINATES
-        x += hotspots.get(hotspot).POSITION.X;
-        y += hotspots.get(hotspot).POSITION.Y;
         
         return new Position(x, y);
     }
