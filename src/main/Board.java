@@ -6,7 +6,6 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,36 +20,29 @@ import java.util.stream.Collectors;
  * @author ricca
  */
 public class Board {
-    public Map<Peer, List<Peer>> adjPeers;
+    public Map<Peer, List<Edge>> adjPeers;
     private List<Peer> hotspots;
-    public int PEERS_IN_HOTSPOTS = 0;
+    Stats statistics;
     
     Board(){
-        this.adjPeers = new HashMap<Peer, List<Peer>>();
-        this.hotspots = new ArrayList<Peer>();
+        adjPeers = new HashMap<Peer, List<Edge>>();
+        hotspots = new ArrayList<Peer>();
+        statistics = new Stats();
     }
     
     void addPeer(Peer p){
-        adjPeers.putIfAbsent(p, new ArrayList<Peer>());
+        adjPeers.putIfAbsent(p, new ArrayList<Edge>());
     }
     
     void removePeer(Peer p){
-        adjPeers.values().stream().forEach(e -> e.remove(p));
         adjPeers.remove(p);
     }
     
-    void addEdge(Peer p1, Peer p2){
-        adjPeers.get(p1).add(p2);
+    void addEdge(Peer p1, Peer p2, int value){
+        adjPeers.get(p1).add(new Edge(p1,p2, value));
     }
     
-    void removeEdge(Peer p1, Peer p2){
-        List<Peer> eP1 = adjPeers.get(p1);
-        if (eP1 != null)
-            eP1.remove(p2);
-    }
-    
-    public void nextInfectionState(){
-        
+    public void nextInfectionState(int cycle){     
         ArrayList<Peer> tmp = new ArrayList<>();
         ExecutorService pool = Executors.newFixedThreadPool(8);
         
@@ -59,57 +51,57 @@ public class Board {
         adjPeers.entrySet().stream()
                 .filter((x) -> x.getKey().INFECTION_STATE != Parameters.Infection_State.RECOVERED)
                 .forEach((entry) -> {
-                    pool.execute(new Task(entry.getKey(), tmp, this));
-                    //changeInfectionState(entry.getKey(), tmp);
+                    pool.execute(() -> {
+                        changeInfectionState(entry.getKey(), tmp, cycle);
+                    });
         });
         
         pool.shutdown();
         try {
             pool.awaitTermination(10, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
-            ex.printStackTrace();
             System.exit(-1);
         }
     }
     
-    public void changeInfectionState(Peer p, ArrayList<Peer> tmp){
+    private void changeInfectionState(Peer p, ArrayList<Peer> tmp, int cycle){
         Random r = new Random();
         double prob = r.nextDouble();
         if(prob < Parameters.PATCH_RATE){
+            
+            if(p.INFECTION_STATE==Parameters.Infection_State.SUSCEPTIBLE){
+                statistics.increaseImmunedPeers();
+                statistics.increaseImmunedPeersPerCycle(cycle);
+            }else{
+                statistics.increadRecoveredPeers();
+                statistics.increaseRecoveredPeersPerCycle(cycle);
+            }
+            
             p.INFECTION_STATE = Parameters.Infection_State.RECOVERED;
+            List<Edge> edges = adjPeers.get(p);
+            if(!edges.isEmpty())
+                edges.get(0).value = cycle;
             return;
         }
         if(p.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
             return;
         
-//        long infectious_peers = 
-//                adjPeers.keySet().stream()
-//                .filter((x) -> x.OPERATING_SYSTEM == p.OPERATING_SYSTEM)
-//                .filter((x) -> p.hasInRadius(x, Parameters.INFECTION_RADIUS))
-//                .filter((x) -> x.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
-//                .count();
-//        
         List<Peer> infectious_peers = 
                 tmp.stream()
                 .filter((x) -> x.OPERATING_SYSTEM == p.OPERATING_SYSTEM)
                 .filter((x) -> p.hasInRadius(x, Parameters.INFECTION_RADIUS))
                 .filter((x) -> x.INFECTION_STATE == Parameters.Infection_State.INFECTIOUS)
                 .collect(Collectors.toList());
-          
+
         for(Peer peer : infectious_peers){
             if(r.nextDouble() < Parameters.INFECTION_RATE){
                 p.INFECTION_STATE = Parameters.Infection_State.INFECTIOUS;
-                adjPeers.get(p).add(peer);
+                statistics.increaseInfectedPeers();
+                statistics.increaseInfectedPeersPerCycle(cycle);
+                addEdge(p, peer, cycle);
                 return;
             }
         }
-        
-//        for(int i=0;i<infectious_peers;i++){
-//            if(r.nextDouble() < Parameters.INFECTION_RATE){
-//                p.INFECTION_STATE = Parameters.Infection_State.INFECTIOUS;
-//                return;
-//            }
-//        }
     }
     
     public void generateHotspots(){
@@ -119,13 +111,26 @@ public class Board {
             int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
             int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
             Parameters.OS os = Parameters.OS.HOTSPOT;
-            p = new Peer(x, y, os);
+            p = new Peer(x, y, os, i);
             hotspots.add(p);
-            System.out.println("New Hotspot Generated -> X : " + p.POSITION.X + ", Y : " + p.POSITION.Y);
         }
     }
     
-    public Peer generatePeer(){
+    public void generatePeers(){
+        for(int i=0;i<Parameters.NUMBER_OF_PEERS-1;i++){
+            Peer p = generatePeer(i);
+            statistics.UpdatePeersOs(p.OPERATING_SYSTEM);
+            addPeer(p);
+        }
+        
+        Peer p = generatePeer(Parameters.NUMBER_OF_PEERS-1);
+        p.INFECTION_STATE = Parameters.Infection_State.INFECTIOUS;
+        statistics.INFECTED_OS = p.OPERATING_SYSTEM;
+        statistics.UpdatePeersOs(p.OPERATING_SYSTEM);
+        addPeer(p);
+    }
+    
+    private Peer generatePeer(int id){
         Random r = new Random();
         Peer p;
         
@@ -139,61 +144,48 @@ public class Board {
             os = Parameters.OS.OTHERS;
 
         // PROPORTION OF PEERS IN HOTSPOTS
-        double rate = (adjPeers.isEmpty()) ? 1 : ((double) PEERS_IN_HOTSPOTS/adjPeers.size());
+        double rate = (adjPeers.isEmpty()) ? 1 : ((double) statistics.peers_spawned_near_hotspots/adjPeers.size());
         // IF THE PROPORTION IS STILL ACCEPTABLE
         if(rate <= Parameters.HOTSPOT_PROPORTION)
         {
             // SELECTED HOTSPOT
             int hotspot = r.nextInt(Parameters.NUMBER_OF_HOTSPOTS);
-            Position pos = ZipfLawGenerator(hotspot);
+            Position pos = ZipfLawDistanceGenerator(hotspot);
             
-            p = new Peer(pos.X, pos.Y, os);
-            PEERS_IN_HOTSPOTS++;
+            p = new Peer(pos.X, pos.Y, os, id);
+            statistics.peers_spawned_near_hotspots++;
         }else{
             int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
             int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
-            p = new Peer(x, y, os);
+            p = new Peer(x, y, os, id);
+            statistics.peers_spawned_random++;
         }
-        
-        p.DIRECTION = p.POSITION;
-        
-        return p;
-    }
-    
-    public Peer generatePeer(Parameters.Infection_State INFECTION_STATE){
-        Random r = new Random();
-        Peer p;
+        int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
+        int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
 
-        // PROPORTION OF PEERS IN HOTSPOTS
-        double rate = (adjPeers.isEmpty()) ? 1 : ((double) PEERS_IN_HOTSPOTS/adjPeers.size());
-        // IF THE PROPORTION IS STILL ACCEPTABLE
-        if(rate <= Parameters.HOTSPOT_PROPORTION)
-        {
-            // SELECTED HOTSPOT
-            int hotspot = r.nextInt(Parameters.NUMBER_OF_HOTSPOTS);
-            Position pos = ZipfLawGenerator(hotspot);
-            
-            p = new Peer(pos.X, pos.Y, Parameters.OS.ANDROID);
-            PEERS_IN_HOTSPOTS++;
-        }else{
-            int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
-            int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
-            p = new Peer(x, y, Parameters.OS.ANDROID);
-        }
-        
-        p.DIRECTION = p.POSITION;
-        p.INFECTION_STATE = INFECTION_STATE;
+        p.DIRECTION = new Position(x, y);
         return p;
     }
     
     // COMPUTE NEXT POSITION OF THE PEERS
-    public void movePeers(){
-        adjPeers.entrySet().forEach((entry) -> {
-            if(entry.getKey().MOVING_STATE!=Parameters.Moving_State.HALTING) movePeer(entry.getKey());
+    public void movePeers(int cycle){
+        ExecutorService pool = Executors.newFixedThreadPool(8);
+        adjPeers.entrySet().forEach((entry) ->
+        {
+            pool.execute(() -> {
+                if(entry.getKey().MOVING_STATE!=Parameters.Moving_State.HALTING) movePeer(entry.getKey(), cycle);
+            });
         });
+        
+        pool.shutdown();
+        try {
+            pool.awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException ex) {
+            System.exit(-1);
+        }
     }
     
-    private void movePeer(Peer p){
+    private void movePeer(Peer p, int cycle){
         double x=p.POSITION.X, y=p.POSITION.Y;
         
         if(x == p.DIRECTION.X){
@@ -216,13 +208,31 @@ public class Board {
         
         p.POSITION.X = (int) x;
         p.POSITION.Y = (int) y;
+        
+        for(int i=0;i<Parameters.NUMBER_OF_HOTSPOTS;i++){
+            if(hotspots.get(i).hasInRadius(p, Parameters.HOTSPOT_RADIUS))
+                statistics.increasePopulationInHotspotPerCycle(cycle, i);
+        }
     }
     
     // COMPUTE NEXT STAGE FOR ALL PEERS
-    public void nextState(){
-        adjPeers.entrySet().forEach((entry) -> {
-            changeState(entry.getKey());
+    public void nextState(int cycle){
+        ExecutorService pool = Executors.newFixedThreadPool(8);
+        
+        adjPeers.entrySet().stream()
+                .filter((x) -> x.getKey().INFECTION_STATE != Parameters.Infection_State.RECOVERED)
+                .forEach((entry) -> {
+                    pool.execute(() -> {
+                        changeState(entry.getKey());
+                    });
         });
+        
+        pool.shutdown();
+        try {
+            pool.awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException ex) {
+            System.exit(-1);
+        }
     }
     
     // CHANGE STATE FOR PEER P
@@ -268,7 +278,7 @@ public class Board {
         for(Peer hotspot : hotspots){
             if(hotspot.hasInRadius(p, Parameters.HOTSPOT_RADIUS)){
                 // NEW POSITION IN HOTSPOT WITH ZIPF LAW
-                Position pos = ZipfLawGenerator(hotspots.indexOf(hotspot));
+                Position pos = ZipfLawDistanceGenerator(hotspots.indexOf(hotspot));
                 p.DIRECTION = pos;
                 
                 found = true;
@@ -281,15 +291,15 @@ public class Board {
             p.DIRECTION = new Position(r.nextInt(Parameters.BOARD_WIDTH) + 1, r.nextInt(Parameters.BOARD_HEIGHT) + 1);
     }
     
-    private Position ZipfLawGenerator(int hotspot){
+    private Position ZipfLawDistanceGenerator(int hotspot){
         // THIS PEER IS GOING TO BE PLACED IN AN HOTSPOTS
         int x = 0;
         int y = 0;
         
         Random r = new Random();
         
-        int angle = 0;
-        int distance = 1;
+        int angle;
+        int distance;
         // WHILE THE COORDINATES ARE ACCEPTABLE
         while(x <= 0 || x > Parameters.BOARD_WIDTH || y <= 0 || y > Parameters.BOARD_HEIGHT)
         {
@@ -308,26 +318,6 @@ public class Board {
             x += hotspots.get(hotspot).POSITION.X;
             y += hotspots.get(hotspot).POSITION.Y;
         }
-        
         return new Position(x, y);
     }
-}
-
-class Task implements Runnable{
-
-    Peer peer;
-    ArrayList<Peer> tmp;
-    Board board;
-    
-    Task(Peer p, ArrayList<Peer> peers, Board b){
-        peer = p;
-        tmp = peers;
-        board = b;
-    }
-    
-    @Override
-    public void run() {
-        board.changeInfectionState(peer, tmp);
-    }
-    
 }

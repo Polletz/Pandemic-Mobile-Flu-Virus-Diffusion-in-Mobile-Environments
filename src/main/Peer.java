@@ -11,20 +11,23 @@ package main;
  */
 public class Peer {
     
+    int ID;
     Parameters.Infection_State INFECTION_STATE;
     Parameters.Moving_State MOVING_STATE;
     Position POSITION;
     Position DIRECTION;
     Parameters.OS OPERATING_SYSTEM;
     
-    Peer(Position position, Parameters.OS operating_system){
+    Peer(Position position, Parameters.OS operating_system, int id){
+        ID = id;
         INFECTION_STATE = Parameters.Infection_State.SUSCEPTIBLE;
         MOVING_STATE = Parameters.Moving_State.HALTING;
         POSITION = position;
         OPERATING_SYSTEM = operating_system;
     }
     
-    Peer(int x, int y, Parameters.OS operating_system){
+    Peer(int x, int y, Parameters.OS operating_system, int id){
+        ID = id;
         INFECTION_STATE = Parameters.Infection_State.SUSCEPTIBLE;
         MOVING_STATE = Parameters.Moving_State.HALTING;
         POSITION = new Position(x, y);
@@ -33,7 +36,7 @@ public class Peer {
     
     @Override
     public String toString(){
-        String s = "X : " + POSITION.X + ", Y : " + POSITION.Y + ", INFECTION STATE : " + INFECTION_STATE + ", MOVING STATE : " + MOVING_STATE + ", DIRECTION : " + DIRECTION.X + ", " + DIRECTION.Y;
+        String s = "ID :" + ID + ", INFECTION STATE : " + INFECTION_STATE + ", MOVING STATE : " + MOVING_STATE;
         return s;
     }
     
@@ -46,7 +49,7 @@ public class Peer {
     }
     
     public Peer getCopy(){
-        Peer peer = new Peer(this.POSITION, this.OPERATING_SYSTEM);
+        Peer peer = new Peer(this.POSITION, this.OPERATING_SYSTEM, this.ID);
         peer.DIRECTION=this.DIRECTION;
         peer.INFECTION_STATE=this.INFECTION_STATE;
         peer.MOVING_STATE=this.MOVING_STATE;

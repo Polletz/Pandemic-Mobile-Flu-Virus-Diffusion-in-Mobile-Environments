@@ -10,6 +10,9 @@ package main;
  * @author ricca
  */
 public interface Parameters {
+    
+    public static final int ITERATIONS = 15;
+    
     // RANDOM MEASURES SELECTED BY ME
     public static final int BOARD_HEIGHT = 250;
     public static final int BOARD_WIDTH = 250;
@@ -26,7 +29,7 @@ public interface Parameters {
     public static final double OTHERS_PERCENTAGE = (1.0 - (ANDROID_PERCENTAGE + IOS_PERCENTAGE));
     
     // RANDOM MEASURE SELECTED BY ME
-    public static final int NUMBER_OF_PEERS = 32000;
+    public static final int NUMBER_OF_PEERS = 300;
     
     // POOSSIBLE STATES
     public static enum Infection_State{SUSCEPTIBLE, INFECTIOUS, RECOVERED}
@@ -34,10 +37,10 @@ public interface Parameters {
     public static enum OS{ANDROID, IOS, OTHERS, HOTSPOT}
     
     // RANDOM MEASURES SELECTED BY ME
-    public static final int NUMBER_OF_HOTSPOTS = 3;
+    public static final int NUMBER_OF_HOTSPOTS = 5;
     public static final double HOTSPOT_DISTANCE_PERCENTAGE = 0.8;
-    public static final double HOTSPOT_PROPORTION = 0.3;
-    public static final int HOTSPOT_RADIUS = 7;
+    public static final double HOTSPOT_PROPORTION = 0.7;
+    public static final int HOTSPOT_RADIUS = 20;
     
     // RANDOM MEASURES SELECTED BY ME
     public static final double H_TO_H = 0.83;
