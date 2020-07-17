@@ -29,7 +29,7 @@ public interface Parameters {
     public static final double OTHERS_PERCENTAGE = (1.0 - (ANDROID_PERCENTAGE + IOS_PERCENTAGE));
     
     // RANDOM MEASURE SELECTED BY ME
-    public static final int NUMBER_OF_PEERS = 300;
+    public static final int NUMBER_OF_PEERS = 30;
     
     // POOSSIBLE STATES
     public static enum Infection_State{SUSCEPTIBLE, INFECTIOUS, RECOVERED}

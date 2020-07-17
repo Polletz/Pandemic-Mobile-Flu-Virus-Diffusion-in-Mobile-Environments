@@ -5,10 +5,14 @@
  */
 package main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -319,5 +323,26 @@ public class Board {
             y += hotspots.get(hotspot).POSITION.Y;
         }
         return new Position(x, y);
+    }
+
+    public void createNodesFile() throws FileNotFoundException{
+        try (PrintStream writetoFile = new PrintStream(new File("nodes.json"))) {
+            writetoFile.println("{");
+            adjPeers.keySet().forEach((p) -> {
+                writetoFile.println("\"" + p.ID + "\"" + ":{\"infection_state\":\"" + p.INFECTION_STATE +
+                        "\",\"moving_state\":\"" + p.MOVING_STATE + "\",\"OS\":\"" + p.OPERATING_SYSTEM + "\"},");
+            });
+            writetoFile.println("}");
+        }
+    }
+    
+    public void createEdgesFile() throws FileNotFoundException{
+        try (PrintStream writetoFile = new PrintStream(new File("edges.txt"))) {
+            adjPeers.entrySet().forEach((entry) -> {
+                entry.getValue().forEach((p) -> {
+                    writetoFile.println(p.toString());
+                });
+            });
+        }
     }
 }

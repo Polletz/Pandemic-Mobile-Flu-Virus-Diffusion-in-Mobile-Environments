@@ -19,4 +19,9 @@ public class Edge {
         this.dest = dest;
         this.value = value;
     }
+    
+    @Override
+    public String toString(){
+        return source.ID + " " + dest.ID + " " + value;
+    }
 }

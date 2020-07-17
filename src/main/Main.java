@@ -5,6 +5,8 @@
  */
 package main;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author ricca
@@ -26,5 +28,11 @@ public class Main {
         }
         
         b.statistics.printStatistics(System.out);
+        try {
+            b.createNodesFile();
+            b.createEdgesFile();
+        } catch (FileNotFoundException ex) {
+            System.exit(-1);
+        }
     }
 }
