@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,7 +52,6 @@ public class Board {
         adjPeers.keySet().forEach((x) -> tmp.add(x.getCopy()));
         
         adjPeers.entrySet().stream()
-                .filter((x) -> x.getKey().INFECTION_STATE != Parameters.Infection_State.RECOVERED)
                 .forEach((entry) -> {
                     pool.execute(() -> {
                         changeInfectionState(entry.getKey(), tmp, cycle);
@@ -69,6 +67,7 @@ public class Board {
     }
     
     private void changeInfectionState(Peer p, ArrayList<Peer> tmp, int cycle){
+        if(p.INFECTION_STATE==Parameters.Infection_State.RECOVERED) return;
         Random r = new Random();
         double prob = r.nextDouble();
         if(prob < Parameters.PATCH_RATE){
@@ -272,7 +271,23 @@ public class Board {
     private void moveToTravelling(Peer p){
         p.MOVING_STATE = Parameters.Moving_State.TRAVELLING;
         Random r = new Random();
-        p.DIRECTION = new Position(r.nextInt(Parameters.BOARD_WIDTH) + 1, r.nextInt(Parameters.BOARD_HEIGHT) + 1);
+        Position pos;
+        
+         // PROPORTION OF PEERS IN HOTSPOTS
+        double rate = (adjPeers.isEmpty()) ? 1 : ((double) statistics.peers_spawned_near_hotspots/adjPeers.size());
+        // IF THE PROPORTION IS STILL ACCEPTABLE
+        if(rate <= Parameters.HOTSPOT_PROPORTION)
+        {
+            // SELECTED HOTSPOT
+            int hotspot = r.nextInt(Parameters.NUMBER_OF_HOTSPOTS);
+            pos = ZipfLawDistanceGenerator(hotspot);
+        
+        }else{
+            int x = r.nextInt(Parameters.BOARD_WIDTH) + 1;
+            int y = r.nextInt(Parameters.BOARD_HEIGHT) + 1;
+            pos = new Position(x, y);
+        }
+        p.DIRECTION = pos;
     }
     
     private void moveToExploring(Peer p){
@@ -312,7 +327,7 @@ public class Board {
             // DISTANCE COMPUTED WITH ZIPF'S LAW
             distance = 1;
             double par = r.nextDouble();
-            while(r.nextDouble() > (Parameters.HOTSPOT_DISTANCE_PERCENTAGE/distance))
+            while(r.nextDouble() > (Parameters.HOTSPOT_AWAY_PERCENTAGE/distance) && distance < Parameters.HOTSPOT_RADIUS)
                 distance++;
 
             x = (int) (distance * Math.cos(angle));
@@ -325,8 +340,8 @@ public class Board {
         return new Position(x, y);
     }
 
-    public void createNodesFile() throws FileNotFoundException{
-        try (PrintStream writetoFile = new PrintStream(new File("nodes.json"))) {
+    public void createNodesFile(int proof) throws FileNotFoundException{
+        try (PrintStream writetoFile = new PrintStream(new File("nodes_"+proof+".json"))) {
             writetoFile.println("{");
             adjPeers.keySet().forEach((p) -> {
                 writetoFile.println("\"" + p.ID + "\"" + ":{\"infection_state\":\"" + p.INFECTION_STATE +
@@ -336,8 +351,8 @@ public class Board {
         }
     }
     
-    public void createEdgesFile() throws FileNotFoundException{
-        try (PrintStream writetoFile = new PrintStream(new File("edges.txt"))) {
+    public void createEdgesFile(int proof) throws FileNotFoundException{
+        try (PrintStream writetoFile = new PrintStream(new File("edges_"+proof+".txt"))) {
             adjPeers.entrySet().forEach((entry) -> {
                 entry.getValue().forEach((p) -> {
                     writetoFile.println(p.toString());

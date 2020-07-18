@@ -124,14 +124,15 @@ public class Stats {
         for(int i=0;i<Parameters.ITERATIONS;i++)
             ps.println("Cycle -> " + i + ", Recovered -> " + recovered_peers_per_cycle.get(i));
         ps.println();
+        ps.println("Immuned Peers per cycle : ");
         for(int i=0;i<Parameters.ITERATIONS;i++)
             ps.println("Cycle -> " + i + ", Immuned -> " + immuned_peers_per_cycle.get(i));
         ps.println();
-        ps.println("Population in Hotspot per cycle : ");
-        for(int i=0;i<Parameters.ITERATIONS;i++){
-            ps.println("Cycle -> " + i);
-            for(int j=0;j<Parameters.NUMBER_OF_HOTSPOTS;j++)
-                ps.println("\tHotspot : " + j + ", Peers : " + population_in_hotspots_per_cycle.get(i).get(j));
-        }
+//        ps.println("Population in Hotspot per cycle : ");
+//        for(int i=0;i<Parameters.ITERATIONS;i++){
+//            ps.println("Cycle -> " + i);
+//            for(int j=0;j<Parameters.NUMBER_OF_HOTSPOTS;j++)
+//                ps.println("\tHotspot : " + j + ", Peers : " + population_in_hotspots_per_cycle.get(i).get(j));
+//        }
     }
 }
