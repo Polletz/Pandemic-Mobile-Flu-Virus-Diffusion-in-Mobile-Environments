@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Pisa University
+ * Peer to Peer Systems and Blockchains
+ * Year 2019/2020
+ * Paoletti Riccardo, paoletti.riccardo0@gmail.com
+ * Final Project
  */
 package main;
 
-/**
- *
- * @author ricca
- */
+// THIS CLASS MODELS AN EDGE BETWEEN TWO PEERS
 public class Edge {
     Peer source;
     Peer dest;

@@ -1,0 +1,621 @@
+Stats
+
+Infected OS : ANDROID
+
+Population with Android : 24427
+Population with IOS : 4478
+Population with OTHERS : 95
+
+Peers spawned near hotspots : 20300
+Peers spawned randomly : 8700
+
+Infected Peers : 2
+Recovered Peers : 10625
+Immuned Peers : 18373
+
+Infected Peers per cycle : 
+14
+143
+156
+71
+310
+489
+690
+707
+1214
+1148
+ 640
+ 325
+ 343
+ 419
+ 400
+ 266
+ 230
+ 308
+ 323
+ 365
+ 281
+ 177
+ 216
+ 118
+ 82
+ 58
+ 116
+ 133
+ 172
+ 142
+ 65
+ 50
+ 28
+ 28
+ 58
+ 86
+ 65
+ 39
+ 24
+ 37
+ 30
+ 22
+ 11
+ 10
+ 3
+ 1
+ 3
+ 2
+ 2
+ 0
+ 0
+ 0
+ 0
+ 1
+ 0
+ 0
+ 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 2
+ 1
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+Cycle -> 100, Infected -> 0
+Cycle -> 101, Infected -> 0
+Cycle -> 102, Infected -> 0
+Cycle -> 103, Infected -> 0
+Cycle -> 104, Infected -> 0
+Cycle -> 105, Infected -> 0
+Cycle -> 106, Infected -> 0
+Cycle -> 107, Infected -> 0
+Cycle -> 108, Infected -> 0
+Cycle -> 109, Infected -> 0
+Cycle -> 110, Infected -> 0
+Cycle -> 111, Infected -> 0
+Cycle -> 112, Infected -> 0
+Cycle -> 113, Infected -> 0
+Cycle -> 114, Infected -> 0
+Cycle -> 115, Infected -> 0
+Cycle -> 116, Infected -> 0
+Cycle -> 117, Infected -> 0
+Cycle -> 118, Infected -> 0
+Cycle -> 119, Infected -> 0
+Cycle -> 120, Infected -> 0
+Cycle -> 121, Infected -> 0
+Cycle -> 122, Infected -> 0
+Cycle -> 123, Infected -> 0
+Cycle -> 124, Infected -> 0
+Cycle -> 125, Infected -> 0
+Cycle -> 126, Infected -> 0
+Cycle -> 127, Infected -> 0
+Cycle -> 128, Infected -> 0
+Cycle -> 129, Infected -> 0
+Cycle -> 130, Infected -> 0
+Cycle -> 131, Infected -> 0
+Cycle -> 132, Infected -> 0
+Cycle -> 133, Infected -> 0
+Cycle -> 134, Infected -> 0
+Cycle -> 135, Infected -> 0
+Cycle -> 136, Infected -> 0
+Cycle -> 137, Infected -> 0
+Cycle -> 138, Infected -> 0
+Cycle -> 139, Infected -> 0
+Cycle -> 140, Infected -> 0
+Cycle -> 141, Infected -> 0
+Cycle -> 142, Infected -> 0
+Cycle -> 143, Infected -> 0
+Cycle -> 144, Infected -> 0
+Cycle -> 145, Infected -> 0
+Cycle -> 146, Infected -> 0
+Cycle -> 147, Infected -> 0
+Cycle -> 148, Infected -> 0
+Cycle -> 149, Infected -> 0
+Cycle -> 150, Infected -> 0
+Cycle -> 151, Infected -> 0
+Cycle -> 152, Infected -> 0
+Cycle -> 153, Infected -> 0
+Cycle -> 154, Infected -> 0
+Cycle -> 155, Infected -> 0
+Cycle -> 156, Infected -> 0
+Cycle -> 157, Infected -> 0
+Cycle -> 158, Infected -> 0
+Cycle -> 159, Infected -> 0
+Cycle -> 160, Infected -> 0
+Cycle -> 161, Infected -> 0
+Cycle -> 162, Infected -> 0
+Cycle -> 163, Infected -> 0
+Cycle -> 164, Infected -> 0
+Cycle -> 165, Infected -> 0
+Cycle -> 166, Infected -> 0
+Cycle -> 167, Infected -> 0
+Cycle -> 168, Infected -> 0
+Cycle -> 169, Infected -> 0
+Cycle -> 170, Infected -> 0
+Cycle -> 171, Infected -> 0
+Cycle -> 172, Infected -> 0
+Cycle -> 173, Infected -> 0
+Cycle -> 174, Infected -> 0
+Cycle -> 175, Infected -> 0
+Cycle -> 176, Infected -> 0
+Cycle -> 177, Infected -> 0
+Cycle -> 178, Infected -> 0
+Cycle -> 179, Infected -> 0
+Cycle -> 180, Infected -> 0
+Cycle -> 181, Infected -> 0
+Cycle -> 182, Infected -> 0
+Cycle -> 183, Infected -> 0
+Cycle -> 184, Infected -> 0
+Cycle -> 185, Infected -> 0
+Cycle -> 186, Infected -> 0
+Cycle -> 187, Infected -> 0
+Cycle -> 188, Infected -> 0
+Cycle -> 189, Infected -> 0
+Cycle -> 190, Infected -> 0
+Cycle -> 191, Infected -> 0
+Cycle -> 192, Infected -> 0
+Cycle -> 193, Infected -> 0
+Cycle -> 194, Infected -> 0
+Cycle -> 195, Infected -> 0
+Cycle -> 196, Infected -> 0
+Cycle -> 197, Infected -> 0
+Cycle -> 198, Infected -> 0
+Cycle -> 199, Infected -> 0
+
+Recovered Peers per cycle : 
+ 0
+ 1
+ 5
+ 11
+ 18
+ 40
+ 62
+ 80
+ 120
+ 176
+260
+220
+243
+242
+283
+266
+266
+267
+264
+259
+279
+277
+247
+275
+270
+261
+234
+224
+200
+233
+223
+232
+204
+196
+187
+178
+167
+173
+173
+146
+136
+147
+149
+133
+133
+126
+122
+109
+93
+103
+88
+84
+93
+75
+75
+78
+63
+85
+71
+60
+67
+53
+52
+48
+53
+42
+53
+46
+32
+33
+43
+28
+24
+25
+29
+25
+19
+28
+24
+13
+20
+24
+25
+16
+6
+17
+12
+13
+17
+10
+13
+13
+13
+12
+13
+9
+13
+4
+3
+8
+ 8
+ 5
+ 11
+ 4
+ 3
+ 6
+ 6
+ 4
+ 6
+ 8
+ 3
+ 2
+ 3
+ 3
+ 4
+ 7
+ 1
+ 6
+ 2
+ 1
+ 1
+ 0
+ 1
+Cycle -> 123, Recovered -> 2
+Cycle -> 124, Recovered -> 1
+Cycle -> 125, Recovered -> 3
+Cycle -> 126, Recovered -> 2
+Cycle -> 127, Recovered -> 6
+Cycle -> 128, Recovered -> 2
+Cycle -> 129, Recovered -> 1
+Cycle -> 130, Recovered -> 1
+Cycle -> 131, Recovered -> 2
+Cycle -> 132, Recovered -> 1
+Cycle -> 133, Recovered -> 0
+Cycle -> 134, Recovered -> 3
+Cycle -> 135, Recovered -> 0
+Cycle -> 136, Recovered -> 2
+Cycle -> 137, Recovered -> 1
+Cycle -> 138, Recovered -> 1
+Cycle -> 139, Recovered -> 2
+Cycle -> 140, Recovered -> 0
+Cycle -> 141, Recovered -> 1
+Cycle -> 142, Recovered -> 2
+Cycle -> 143, Recovered -> 0
+Cycle -> 144, Recovered -> 0
+Cycle -> 145, Recovered -> 0
+Cycle -> 146, Recovered -> 3
+Cycle -> 147, Recovered -> 0
+Cycle -> 148, Recovered -> 1
+Cycle -> 149, Recovered -> 1
+Cycle -> 150, Recovered -> 0
+Cycle -> 151, Recovered -> 0
+Cycle -> 152, Recovered -> 0
+Cycle -> 153, Recovered -> 0
+Cycle -> 154, Recovered -> 1
+Cycle -> 155, Recovered -> 2
+Cycle -> 156, Recovered -> 0
+Cycle -> 157, Recovered -> 1
+Cycle -> 158, Recovered -> 1
+Cycle -> 159, Recovered -> 0
+Cycle -> 160, Recovered -> 2
+Cycle -> 161, Recovered -> 0
+Cycle -> 162, Recovered -> 0
+Cycle -> 163, Recovered -> 0
+Cycle -> 164, Recovered -> 0
+Cycle -> 165, Recovered -> 0
+Cycle -> 166, Recovered -> 0
+Cycle -> 167, Recovered -> 0
+Cycle -> 168, Recovered -> 0
+Cycle -> 169, Recovered -> 0
+Cycle -> 170, Recovered -> 0
+Cycle -> 171, Recovered -> 0
+Cycle -> 172, Recovered -> 0
+Cycle -> 173, Recovered -> 0
+Cycle -> 174, Recovered -> 0
+Cycle -> 175, Recovered -> 0
+Cycle -> 176, Recovered -> 0
+Cycle -> 177, Recovered -> 0
+Cycle -> 178, Recovered -> 0
+Cycle -> 179, Recovered -> 0
+Cycle -> 180, Recovered -> 0
+Cycle -> 181, Recovered -> 0
+Cycle -> 182, Recovered -> 0
+Cycle -> 183, Recovered -> 0
+Cycle -> 184, Recovered -> 0
+Cycle -> 185, Recovered -> 0
+Cycle -> 186, Recovered -> 1
+Cycle -> 187, Recovered -> 0
+Cycle -> 188, Recovered -> 0
+Cycle -> 189, Recovered -> 0
+Cycle -> 190, Recovered -> 0
+Cycle -> 191, Recovered -> 0
+Cycle -> 192, Recovered -> 0
+Cycle -> 193, Recovered -> 0
+Cycle -> 194, Recovered -> 0
+Cycle -> 195, Recovered -> 1
+Cycle -> 196, Recovered -> 0
+Cycle -> 197, Recovered -> 0
+Cycle -> 198, Recovered -> 0
+Cycle -> 199, Recovered -> 0
+
+Immuned Peers per cycle : 
+Cycle -> 0, Immuned -> 1426
+Cycle -> 1, Immuned -> 1366
+Cycle -> 2, Immuned -> 1319
+Cycle -> 3, Immuned -> 1198
+Cycle -> 4, Immuned -> 1211
+Cycle -> 5, Immuned -> 1092
+Cycle -> 6, Immuned -> 1011
+Cycle -> 7, Immuned -> 959
+Cycle -> 8, Immuned -> 801
+Cycle -> 9, Immuned -> 735
+Cycle -> 10, Immuned -> 629
+Cycle -> 11, Immuned -> 569
+Cycle -> 12, Immuned -> 518
+Cycle -> 13, Immuned -> 490
+Cycle -> 14, Immuned -> 448
+Cycle -> 15, Immuned -> 391
+Cycle -> 16, Immuned -> 376
+Cycle -> 17, Immuned -> 360
+Cycle -> 18, Immuned -> 320
+Cycle -> 19, Immuned -> 281
+Cycle -> 20, Immuned -> 239
+Cycle -> 21, Immuned -> 212
+Cycle -> 22, Immuned -> 212
+Cycle -> 23, Immuned -> 176
+Cycle -> 24, Immuned -> 171
+Cycle -> 25, Immuned -> 149
+Cycle -> 26, Immuned -> 122
+Cycle -> 27, Immuned -> 137
+Cycle -> 28, Immuned -> 103
+Cycle -> 29, Immuned -> 107
+Cycle -> 30, Immuned -> 85
+Cycle -> 31, Immuned -> 77
+Cycle -> 32, Immuned -> 79
+Cycle -> 33, Immuned -> 80
+Cycle -> 34, Immuned -> 62
+Cycle -> 35, Immuned -> 54
+Cycle -> 36, Immuned -> 44
+Cycle -> 37, Immuned -> 46
+Cycle -> 38, Immuned -> 47
+Cycle -> 39, Immuned -> 42
+Cycle -> 40, Immuned -> 38
+Cycle -> 41, Immuned -> 36
+Cycle -> 42, Immuned -> 21
+Cycle -> 43, Immuned -> 18
+Cycle -> 44, Immuned -> 36
+Cycle -> 45, Immuned -> 17
+Cycle -> 46, Immuned -> 29
+Cycle -> 47, Immuned -> 29
+Cycle -> 48, Immuned -> 18
+Cycle -> 49, Immuned -> 18
+Cycle -> 50, Immuned -> 17
+Cycle -> 51, Immuned -> 17
+Cycle -> 52, Immuned -> 11
+Cycle -> 53, Immuned -> 15
+Cycle -> 54, Immuned -> 18
+Cycle -> 55, Immuned -> 16
+Cycle -> 56, Immuned -> 16
+Cycle -> 57, Immuned -> 8
+Cycle -> 58, Immuned -> 9
+Cycle -> 59, Immuned -> 7
+Cycle -> 60, Immuned -> 10
+Cycle -> 61, Immuned -> 13
+Cycle -> 62, Immuned -> 13
+Cycle -> 63, Immuned -> 12
+Cycle -> 64, Immuned -> 7
+Cycle -> 65, Immuned -> 13
+Cycle -> 66, Immuned -> 10
+Cycle -> 67, Immuned -> 11
+Cycle -> 68, Immuned -> 12
+Cycle -> 69, Immuned -> 13
+Cycle -> 70, Immuned -> 4
+Cycle -> 71, Immuned -> 6
+Cycle -> 72, Immuned -> 6
+Cycle -> 73, Immuned -> 5
+Cycle -> 74, Immuned -> 5
+Cycle -> 75, Immuned -> 3
+Cycle -> 76, Immuned -> 8
+Cycle -> 77, Immuned -> 5
+Cycle -> 78, Immuned -> 1
+Cycle -> 79, Immuned -> 4
+Cycle -> 80, Immuned -> 4
+Cycle -> 81, Immuned -> 4
+Cycle -> 82, Immuned -> 2
+Cycle -> 83, Immuned -> 2
+Cycle -> 84, Immuned -> 4
+Cycle -> 85, Immuned -> 0
+Cycle -> 86, Immuned -> 1
+Cycle -> 87, Immuned -> 0
+Cycle -> 88, Immuned -> 0
+Cycle -> 89, Immuned -> 3
+Cycle -> 90, Immuned -> 1
+Cycle -> 91, Immuned -> 5
+Cycle -> 92, Immuned -> 2
+Cycle -> 93, Immuned -> 2
+Cycle -> 94, Immuned -> 2
+Cycle -> 95, Immuned -> 0
+Cycle -> 96, Immuned -> 4
+Cycle -> 97, Immuned -> 0
+Cycle -> 98, Immuned -> 3
+Cycle -> 99, Immuned -> 1
+Cycle -> 100, Immuned -> 1
+Cycle -> 101, Immuned -> 0
+Cycle -> 102, Immuned -> 1
+Cycle -> 103, Immuned -> 3
+Cycle -> 104, Immuned -> 4
+Cycle -> 105, Immuned -> 0
+Cycle -> 106, Immuned -> 0
+Cycle -> 107, Immuned -> 0
+Cycle -> 108, Immuned -> 0
+Cycle -> 109, Immuned -> 2
+Cycle -> 110, Immuned -> 2
+Cycle -> 111, Immuned -> 1
+Cycle -> 112, Immuned -> 1
+Cycle -> 113, Immuned -> 1
+Cycle -> 114, Immuned -> 2
+Cycle -> 115, Immuned -> 3
+Cycle -> 116, Immuned -> 1
+Cycle -> 117, Immuned -> 1
+Cycle -> 118, Immuned -> 0
+Cycle -> 119, Immuned -> 0
+Cycle -> 120, Immuned -> 0
+Cycle -> 121, Immuned -> 0
+Cycle -> 122, Immuned -> 1
+Cycle -> 123, Immuned -> 1
+Cycle -> 124, Immuned -> 0
+Cycle -> 125, Immuned -> 0
+Cycle -> 126, Immuned -> 2
+Cycle -> 127, Immuned -> 0
+Cycle -> 128, Immuned -> 0
+Cycle -> 129, Immuned -> 1
+Cycle -> 130, Immuned -> 0
+Cycle -> 131, Immuned -> 0
+Cycle -> 132, Immuned -> 1
+Cycle -> 133, Immuned -> 0
+Cycle -> 134, Immuned -> 0
+Cycle -> 135, Immuned -> 1
+Cycle -> 136, Immuned -> 0
+Cycle -> 137, Immuned -> 0
+Cycle -> 138, Immuned -> 0
+Cycle -> 139, Immuned -> 0
+Cycle -> 140, Immuned -> 1
+Cycle -> 141, Immuned -> 0
+Cycle -> 142, Immuned -> 0
+Cycle -> 143, Immuned -> 0
+Cycle -> 144, Immuned -> 0
+Cycle -> 145, Immuned -> 0
+Cycle -> 146, Immuned -> 0
+Cycle -> 147, Immuned -> 0
+Cycle -> 148, Immuned -> 0
+Cycle -> 149, Immuned -> 1
+Cycle -> 150, Immuned -> 0
+Cycle -> 151, Immuned -> 0
+Cycle -> 152, Immuned -> 1
+Cycle -> 153, Immuned -> 0
+Cycle -> 154, Immuned -> 0
+Cycle -> 155, Immuned -> 0
+Cycle -> 156, Immuned -> 0
+Cycle -> 157, Immuned -> 0
+Cycle -> 158, Immuned -> 0
+Cycle -> 159, Immuned -> 0
+Cycle -> 160, Immuned -> 0
+Cycle -> 161, Immuned -> 0
+Cycle -> 162, Immuned -> 0
+Cycle -> 163, Immuned -> 0
+Cycle -> 164, Immuned -> 0
+Cycle -> 165, Immuned -> 0
+Cycle -> 166, Immuned -> 0
+Cycle -> 167, Immuned -> 0
+Cycle -> 168, Immuned -> 0
+Cycle -> 169, Immuned -> 0
+Cycle -> 170, Immuned -> 0
+Cycle -> 171, Immuned -> 0
+Cycle -> 172, Immuned -> 0
+Cycle -> 173, Immuned -> 0
+Cycle -> 174, Immuned -> 0
+Cycle -> 175, Immuned -> 0
+Cycle -> 176, Immuned -> 0
+Cycle -> 177, Immuned -> 0
+Cycle -> 178, Immuned -> 0
+Cycle -> 179, Immuned -> 0
+Cycle -> 180, Immuned -> 0
+Cycle -> 181, Immuned -> 1
+Cycle -> 182, Immuned -> 0
+Cycle -> 183, Immuned -> 0
+Cycle -> 184, Immuned -> 0
+Cycle -> 185, Immuned -> 0
+Cycle -> 186, Immuned -> 0
+Cycle -> 187, Immuned -> 0
+Cycle -> 188, Immuned -> 0
+Cycle -> 189, Immuned -> 0
+Cycle -> 190, Immuned -> 0
+Cycle -> 191, Immuned -> 0
+Cycle -> 192, Immuned -> 0
+Cycle -> 193, Immuned -> 0
+Cycle -> 194, Immuned -> 0
+Cycle -> 195, Immuned -> 0
+Cycle -> 196, Immuned -> 0
+Cycle -> 197, Immuned -> 0
+Cycle -> 198, Immuned -> 0
+Cycle -> 199, Immuned -> 0
+

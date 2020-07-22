@@ -1,0 +1,621 @@
+Stats
+
+Infected OS : ANDROID
+
+Population with Android : 24285
+Population with IOS : 4589
+Population with OTHERS : 126
+
+Peers spawned near hotspots : 20300
+Peers spawned randomly : 8700
+
+Infected Peers : 2
+Recovered Peers : 12256
+Immuned Peers : 16742
+
+Infected Peers per cycle : 
+64
+113
+303
+1024
+1230
+1076
+1068
+1116
+780
+577
+383
+386
+371
+342
+348
+334
+208
+214
+261
+304
+263
+225
+147
+126
+134
+175
+82
+48
+77
+108
+53
+42
+44
+56
+61
+27
+24
+25
+12
+8
+5
+1
+1
+3
+3
+0
+1
+0
+1
+0
+0
+0
+0
+0
+0
+0
+1
+1
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+
+Recovered Peers per cycle : 
+0
+6
+14
+26
+72
+169
+182
+229
+255
+286
+296
+323
+306
+318
+320
+311
+307
+305
+336
+305
+325
+331
+289
+323
+282
+267
+282
+276
+280
+256
+209
+230
+203
+190
+194
+184
+184
+170
+175
+167
+156
+138
+135
+126
+129
+107
+104
+105
+92
+105
+91
+91
+89
+78
+69
+70
+70
+57
+61
+57
+53
+47
+56
+52
+42
+42
+34
+32
+37
+38
+33
+41
+36
+31
+21
+32
+32
+30
+18
+23
+23
+22
+17
+14
+18
+14
+16
+12
+12
+16
+10
+11
+10
+7
+10
+10
+12
+6
+11
+4
+12
+6
+7
+7
+6
+3
+14
+9
+3
+9
+7
+6
+5
+6
+3
+1
+4
+2
+2
+0
+1
+1
+2
+0
+3
+0
+3
+2
+1
+2
+1
+0
+2
+2
+1
+1
+2
+1
+0
+1
+0
+0
+3
+1
+2
+1
+1
+0
+1
+2
+0
+0
+1
+0
+0
+0
+1
+1
+1
+1
+0
+0
+0
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+0
+0
+0
+0
+0
+1
+0
+
+Immuned Peers per cycle : 
+ 0, Immuned -> 1421
+ 1, Immuned -> 1414
+ 2, Immuned -> 1289
+ 3, Immuned -> 1226
+ 4, Immuned -> 1139
+ 5, Immuned -> 981
+ 6, Immuned -> 887
+ 7, Immuned -> 847
+ 8, Immuned -> 689
+ 9, Immuned -> 589
+ 10, Immuned -> 578
+ 11, Immuned -> 523
+ 12, Immuned -> 486
+ 13, Immuned -> 398
+ 14, Immuned -> 382
+ 15, Immuned -> 340
+ 16, Immuned -> 316
+ 17, Immuned -> 292
+ 18, Immuned -> 251
+ 19, Immuned -> 228
+ 20, Immuned -> 211
+ 21, Immuned -> 199
+ 22, Immuned -> 137
+ 23, Immuned -> 160
+ 24, Immuned -> 124
+ 25, Immuned -> 116
+ 26, Immuned -> 133
+ 27, Immuned -> 89
+ 28, Immuned -> 84
+ 29, Immuned -> 94
+ 30, Immuned -> 84
+ 31, Immuned -> 72
+ 32, Immuned -> 50
+ 33, Immuned -> 60
+ 34, Immuned -> 43
+ 35, Immuned -> 38
+ 36, Immuned -> 42
+ 37, Immuned -> 35
+ 38, Immuned -> 39
+ 39, Immuned -> 32
+ 40, Immuned -> 36
+ 41, Immuned -> 22
+ 42, Immuned -> 38
+ 43, Immuned -> 25
+ 44, Immuned -> 25
+ 45, Immuned -> 23
+ 46, Immuned -> 26
+ 47, Immuned -> 22
+ 48, Immuned -> 17
+ 49, Immuned -> 24
+ 50, Immuned -> 24
+ 51, Immuned -> 15
+ 52, Immuned -> 21
+ 53, Immuned -> 14
+ 54, Immuned -> 10
+ 55, Immuned -> 14
+ 56, Immuned -> 10
+ 57, Immuned -> 14
+ 58, Immuned -> 13
+ 59, Immuned -> 10
+ 60, Immuned -> 13
+ 61, Immuned -> 12
+ 62, Immuned -> 7
+ 63, Immuned -> 12
+ 64, Immuned -> 13
+ 65, Immuned -> 6
+ 66, Immuned -> 8
+ 67, Immuned -> 4
+ 68, Immuned -> 7
+ 69, Immuned -> 3
+ 70, Immuned -> 3
+ 71, Immuned -> 7
+ 72, Immuned -> 9
+ 73, Immuned -> 7
+ 74, Immuned -> 7
+ 75, Immuned -> 11
+ 76, Immuned -> 3
+ 77, Immuned -> 5
+ 78, Immuned -> 5
+ 79, Immuned -> 4
+ 80, Immuned -> 6
+ 81, Immuned -> 5
+ 82, Immuned -> 2
+ 83, Immuned -> 1
+ 84, Immuned -> 1
+ 85, Immuned -> 4
+ 86, Immuned -> 4
+ 87, Immuned -> 2
+ 88, Immuned -> 3
+ 89, Immuned -> 4
+ 90, Immuned -> 0
+ 91, Immuned -> 1
+ 92, Immuned -> 3
+ 93, Immuned -> 2
+ 94, Immuned -> 0
+ 95, Immuned -> 2
+ 96, Immuned -> 3
+ 97, Immuned -> 3
+ 98, Immuned -> 2
+ 99, Immuned -> 3
+ 100, Immuned -> 0
+ 101, Immuned -> 1
+ 102, Immuned -> 0
+ 103, Immuned -> 3
+ 104, Immuned -> 0
+ 105, Immuned -> 1
+ 106, Immuned -> 1
+ 107, Immuned -> 1
+ 108, Immuned -> 1
+ 109, Immuned -> 1
+ 110, Immuned -> 2
+ 111, Immuned -> 0
+ 112, Immuned -> 1
+ 113, Immuned -> 1
+ 114, Immuned -> 0
+ 115, Immuned -> 0
+ 116, Immuned -> 0
+ 117, Immuned -> 0
+ 118, Immuned -> 1
+ 119, Immuned -> 0
+ 120, Immuned -> 1
+ 121, Immuned -> 0
+ 122, Immuned -> 0
+ 123, Immuned -> 0
+ 124, Immuned -> 0
+ 125, Immuned -> 0
+ 126, Immuned -> 2
+ 127, Immuned -> 1
+ 128, Immuned -> 0
+ 129, Immuned -> 1
+ 130, Immuned -> 0
+ 131, Immuned -> 1
+ 132, Immuned -> 0
+ 133, Immuned -> 0
+ 134, Immuned -> 0
+ 135, Immuned -> 1
+ 136, Immuned -> 0
+ 137, Immuned -> 1
+ 138, Immuned -> 0
+ 139, Immuned -> 0
+ 140, Immuned -> 1
+ 141, Immuned -> 0
+ 142, Immuned -> 0
+ 143, Immuned -> 0
+ 144, Immuned -> 0
+ 145, Immuned -> 0
+ 146, Immuned -> 0
+ 147, Immuned -> 0
+ 148, Immuned -> 0
+ 149, Immuned -> 0
+ 150, Immuned -> 0
+ 151, Immuned -> 0
+ 152, Immuned -> 0
+ 153, Immuned -> 0
+ 154, Immuned -> 0
+ 155, Immuned -> 0
+ 156, Immuned -> 0
+ 157, Immuned -> 0
+ 158, Immuned -> 0
+ 159, Immuned -> 0
+ 160, Immuned -> 0
+ 161, Immuned -> 0
+ 162, Immuned -> 0
+ 163, Immuned -> 0
+ 164, Immuned -> 0
+ 165, Immuned -> 0
+ 166, Immuned -> 0
+ 167, Immuned -> 0
+ 168, Immuned -> 0
+ 169, Immuned -> 0
+ 170, Immuned -> 0
+ 171, Immuned -> 0
+ 172, Immuned -> 0
+ 173, Immuned -> 0
+ 174, Immuned -> 0
+ 175, Immuned -> 0
+ 176, Immuned -> 0
+ 177, Immuned -> 0
+ 178, Immuned -> 0
+ 179, Immuned -> 0
+ 180, Immuned -> 0
+ 181, Immuned -> 0
+ 182, Immuned -> 0
+ 183, Immuned -> 0
+ 184, Immuned -> 0
+ 185, Immuned -> 1
+ 186, Immuned -> 0
+ 187, Immuned -> 0
+ 188, Immuned -> 0
+ 189, Immuned -> 0
+ 190, Immuned -> 0
+ 191, Immuned -> 0
+ 192, Immuned -> 0
+ 193, Immuned -> 0
+ 194, Immuned -> 0
+ 195, Immuned -> 0
+ 196, Immuned -> 0
+ 197, Immuned -> 0
+ 198, Immuned -> 0
+ 199, Immuned -> 0
+

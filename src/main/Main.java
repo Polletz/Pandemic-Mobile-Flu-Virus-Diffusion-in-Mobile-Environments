@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Pisa University
+ * Peer to Peer Systems and Blockchains
+ * Year 2019/2020
+ * Paoletti Riccardo, paoletti.riccardo0@gmail.com
+ * Final Project
  */
 package main;
 
@@ -9,28 +11,19 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
-/**
- *
- * @author ricca
- */
 public class Main {
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
+    public static void main(String[] args){
+        // 5 executions are performed and then the average results are taken
         for(int j=0;j<5;j++){
-            
             Board b = new Board();
             b.generateHotspots();
             b.generatePeers();
-            
-            for(int i=0;i<Parameters.ITERATIONS;i++){ 
-                b.nextState(i);
-                b.movePeers(i);
-                b.nextInfectionState(i);
+            for(int i=0;i<Parameters.ITERATIONS;i++){
+                b.nextState(i); // change moving state for each peer
+                b.movePeers(); // move all peers that are not halting
+                b.nextInfectionState(i); // compute new infection state of each peer
             }
-
+            // save results of execution
             try {
                 PrintStream ps = new PrintStream(new FileOutputStream("stats_" + j + ".out"));
                 b.statistics.printStatistics(ps);

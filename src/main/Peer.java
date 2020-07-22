@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Pisa University
+ * Peer to Peer Systems and Blockchains
+ * Year 2019/2020
+ * Paoletti Riccardo, paoletti.riccardo0@gmail.com
+ * Final Project
  */
 package main;
 
-/**
- *
- * @author ricca
- */
+// THIS CLASS MODEL A PEER IN THE NETWORK
 public class Peer {
     
     int ID;
@@ -40,6 +39,8 @@ public class Peer {
         return s;
     }
     
+    // CONTROLS IF THIS PEER HAS IN ITS RADIUS THE PEER PROVIDED IN INPUT
+    // THE RADIUS TO CHECK IS ALSO A PARAMETER
     boolean hasInRadius(Peer p, int radius){
         boolean result = false;
         if((p.POSITION.X - this.POSITION.X) * (p.POSITION.X - this.POSITION.X) + 
@@ -57,6 +58,7 @@ public class Peer {
     }
 }
 
+// CLASS TO MODEL A POSITION IN THE BOARDS
 class Position {
     int X;
     int Y;
